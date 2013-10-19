@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_filter :login_required, only: [:index]
+
   def new
     @user = User.new
   end
@@ -14,6 +17,11 @@ class UsersController < ApplicationController
       flash[:errors] = @user.errors.full_messages
       render :new
     end
+  end
+
+  def index
+    @users = User.all
+    render :index
   end
 
 end

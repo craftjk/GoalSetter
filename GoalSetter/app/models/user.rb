@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   before_validation :token, :must_have_token
 
+  has_many :goals
+
   def is_password?(password)
     BCrypt::Password.new(password_digest).is_password?(password)
   end
